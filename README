@@ -1,0 +1,11 @@
+Ammon's docs
+
+This application assumes that everyone that uses it is ok with sharing their menu plans and recipes with other users of the system.
+
+Shopping Lists and lists of what they have on hand are user-specific since they will vary person to person.
+
+What people have on hand will be erased (after asking them of course) so they can start from scratch on saying what ingredients they already have.  It just seems to make sense from a use case standpoint that people would be better off just saying what they have all over again (and they can ignore or cross out stuff on the printed out shopping list instead if they want to).
+
+Previous shopping lists will be saved.  For some reason I thought people would want their shopping list history.  At the very least, the list of ingredients on hand and the shopping list are saved in the database not just in the browser in case of crashes since it is a lot of work to input what you have.
+
+It would be nice to be able to add things that aren't on the menu to the shopping list.
