@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+ <title>NotLeftoversAgain - Recipe management, Menu and Meal Planning, and Automatic Shopping list generation</title>
+ <link rel="stylesheet" type="text/css" media="all" href="/stylesheets/balloons.css" />
+ <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/bt.css" />
+ <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/niftyCorners.css" />
+ <style type="text/css">
+   div#everything_else {
+     display: block;
+   }
+   .title {
+     padding: 10px 10px 10px 10px; 
+     background: #599b51; /* green from GIMP */
+     /*color: white;
+     display: inline;*/
+   }
+   div#left {
+     float: left;
+   }
+   div#right {
+     float: left;
+     border-left: 20px;
+   }
+   div#steps_div {
+     /*display: inline;*/
+     border-left: 10px;
+   }
+   div#links {
+     margin-top: 20px;
+     margin-left: 20px;  /* spacing between */
+   }
+   div#picture {
+     /*
+     margin-top: 20px;
+     margin-left: 20px;  
+     */
+     /* spacing between */
+     /*border-left: 10px;*/
+   }
+   img#main_picture {
+     /*margin-top: 10px;*/
+     width: 300px;
+     height: 200px;
+   }
+   ul#steps_list {
+     list-style-type: none;
+     /*border: 2px solid blue;*/
+     margin: 0px;
+     padding: 10px;
+   }
+   ul#steps_list li {
+     /*display: inline;*/
+     margin: 0px;
+     padding: 2px;
+     background: white;
+   }
+   ul#steps_list li p {
+     font-size: 18px;
+     vertical-align: middle;
+     display: inline;
+   }
+   ul#links_list {
+     list-style-type: none;
+     /*background: black;*/
+     margin: 0px;
+     padding: 4px;
+   }
+   ul#links_list li {
+     float: left;
+     margin: 0px;
+     padding: 2px;
+     /*background: yellow;*/
+   }
+   ul#links_list li span {
+     font-size: 12px;
+   }
+   div#picture {
+     /*
+     border: 1px solid maroon;
+     background: orange;
+     */
+   }
+   a {
+     text-decoration: none;
+     color: red;
+   }
+   a:hover {
+     color: green;
+   }
+   a:active {
+     color: yellow;
+   }
+   a:visited {
+     text-decoration: line-through;
+   }
+   img.number {
+     /*
+     width: 40px; 
+     height: 40px;
+     */
+     border: 0px;
+     margin: 4px;
+   }
+ </style>
+ <script type="text/javascript" src="/javascripts/niftycube.js"></script>
+ <script type="text/javascript" src="/javascripts/BubbleTooltips.js"></script>
+ <script type="text/javascript">
+  /* 
+  window.onload=function(){
+    enableTooltips(); 
+  };
+  */
+  NiftyLoad = function() { 
+    Nifty("div#test_nifty,div.title", "big");
+    enableTooltips();
+  };  
+ </script>
+</head>
+<body>
+<div id="top">
+  <div align="center" class="title" >
+    <img src="/images/TropicalTitle.jpg" alt="Not Leftovers Again" />
+  </div>
+  <div id="test_nifty" style="background: #f90;">
+    <h1>H1</h1>
+    <h3>H3</h3>
+    <p>Whatever I want to say.  Even if I'm all about the quick brown fox<br />jumping over a rotten log.</p>
+  </div>
+  <div id="links">
+   <ul id="links_list">
+    <li>
+      <a href="javascript:void(0)" >Screenshots</a>
+    </li> 
+    <li>
+     |
+    </li> 
+    <li>
+      <a href="javascript:void(0)" >Features</a>
+    </li>
+    <li>
+     |
+    </li> 
+    <li>
+      <a href="javascript:void(0)" >Login</a>  
+    </li> 
+    <li>
+     |
+    </li> 
+    <li>
+      <a href="javascript:void(0)" >Create an account<!-- Free 30-day trial--></a>
+    </li> 
+   </ul>
+  </div> <!-- links -->
+</div>
+<br />
+<div id="everything_else">
+ <div id="left" class="balloon">
+   <ul id="steps_list">
+    <li>
+      <a href="javascript:void(0)" title="Manage and share your personal recipes or find shared community recipes">
+        <img src="/images/number-1.gif" alt="1." class="number" />
+        <p>Recipe Box</p>
+      <!--[if IE 7]><!--></a><!--<![endif]-->
+      <table>
+       <tbody>
+	<tr>
+	 <td>
+	  <dl id="web1">
+	   <dt>Recipe Box</dt>
+	   <dd>
+	    <p>Enter your recipes or search or browse community recipes to add to your personal collection.</p>
+	    <a href="#TODO">Browse popular community recipes</a><br />
+	    <a href="#TODO">Use the demo account to see how your online recipe box looks/is organized.</a><br />
+	    <em></em>
+	   </dd>
+	  </dl>
+	 </td>
+	</tr>
+       </tbody>
+      </table>
+      <!--[if lte IE 6]>
+      </a>
+      <![endif]-->
+
+    </li> 
+    <li>
+      <a href="javascript:void(0)" title="Put different dishes (recipes) together to form meals to use now or in the future.  Scale recipe servings to meet your needs.">
+	<img src="/images/number-2.gif" alt="2." class="number" />
+	<p>
+	  Meal Planner
+	</p>
+      <!--[if IE 7]><!--></a><!--<![endif]-->
+      <table>
+       <tbody>
+	<tr>
+	 <td>
+	  <dl id="web2">
+	   <dt>Meal Planner</dt>
+	   <dd>
+	    <p>Put different dishes (recipes) together to form meals to use now or in the future.  Scale recipe servings to meet your needs.</p>
+	    <a href="#TODO">Browse popular community meal menu plans.</a><br />
+	    <a href="#TODO">Use the demo account to try out the meal planner.</a><br />
+	    <em></em>
+	   </dd>
+	  </dl>
+	 </td>
+	</tr>
+       </tbody>
+      </table>
+      <!--[if lte IE 6]>
+      </a>
+      <![endif]-->
+    </li> 
+    <li>
+      <a href="javascript:void(0)" title="Drag and drop your meals onto a multi-week calendar for completely customize your weekly menu(s) OR tell us what you're in the mood for and we'll generate a multi-week menu with personal and/or community meals that meet your criteria.">
+	<img src="/images/number-3.gif" alt="3." class="number" />
+	<p>
+	  Multi-week Menu Planning
+	</p>
+      <!--[if IE 7]><!--></a><!--<![endif]-->
+      <table>
+       <tbody>
+	<tr>
+	 <td>
+	  <dl id="web3">
+	   <dt>Menu Planning</dt>
+	   <dd>
+	    <p>Could make into list...
+	      Drag and drop your meals onto a multi-week calendar for completely customize your weekly menu(s) OR tell us what you're in the mood for and we'll generate a multi-week menu with personal and/or community meals that meet your criteria.</p>
+	    <a href="#TODO">See some sample community multi-week menus</a><br />
+	    <a href="#TODO">Use the demo account to try out the multi-week menu planner.</a><br />
+	    <em></em>
+	   </dd>
+	  </dl>
+	 </td>
+	</tr>
+       </tbody>
+      </table>
+      <!--[if lte IE 6]>
+      </a>
+      <![endif]-->
+    </li> 
+    <li>
+      <a href="javascript:void(0)" title="Generate a shopping list for your multi-week menu.  Optionally you can enter what you have on hand to figure out what you need to buy to add to what you already have on hand.">
+	<img src="/images/number-4.gif" alt="4." class="number" />
+	<p>
+	  Shopping List Generator
+	</p>
+      <!--[if IE 7]><!--></a><!--<![endif]-->
+      <table>
+       <tbody>
+	<tr>
+	 <td>
+	  <dl id="web4">
+	   <dt>Shopping List</dt>
+	   <dd>
+	    <p>
+	      Hate making shopping lists or afraid you'll miss something for the recipes you'll need?  Want to make less trips to the store?  Want a specific list of things to get to help reduce the chance of impulsive buying to save money and eat healthier?  Then the shopping list generator is for you. <br /> 
+	      Here's how it works:  Once you've created a multi-week menu, you can enter what you have on hand to figure out what you actually need to buy.
+	    </p>
+	    <a href="#TODO">See some sample multi-week menus</a><br />
+	    <a href="#TODO">Use the demo account to try out the multi-week menu planner.</a><br />
+	    <em></em>
+	   </dd>
+	  </dl>
+	 </td>
+	</tr>
+       </tbody>
+      </table>
+      <!--[if lte IE 6]>
+      </a>
+      <![endif]-->
+    </li> 
+   </ul>
+ </div> <!-- left --> 
+ <div id="right">
+  <div id="picture">
+    <img class="main_picture" src="/images/fruit-and-shake.jpg" alt="Picture of delicious, mouthwatering food goes here." />
+  </div> <!-- picture -->
+ </div> <!-- right --> 
+</div>
+ 
+</body>
+</html>

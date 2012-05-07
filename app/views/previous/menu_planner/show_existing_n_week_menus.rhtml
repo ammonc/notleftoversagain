@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Existing N Week Menus</title>
+</head>
+<body>
+  <h1>Existing N Week Menus</h1>
+
+  <% for n_week_menu in @n_week_menus do  %>
+    <%= "##{n_week_menu.id} #{n_week_menu.name}: #{n_week_menu.start_date} - #{n_week_menu.end_date}" %>
+    <%= link_to 'Edit', { :action => 'drag_n_drop_n_week_menu_planner', :n_week_menu_id => n_week_menu.id } %>
+    <%= link_to 'Delete', { :action => 'delete_n_week_menu', :id => n_week_menu.id } %>
+    <br />
+  <% end %>
+  <% if @n_week_menus.empty?  %>
+    There are currently no N week menus.
+  <% end %>
+
+  <br />
+  <hr />
+  <br />
+  
+  <div style="border: 1px solid maroon;">
+  <%= start_form_tag :action => 'start_new_n_week_menu' %>
+   <p> Create a new 
+    <%= text_field_tag 'num_weeks', 2, {:size => 2, :maxlength => 2} %>
+   week menu. <br />
+    Name of N week menu: <%= text_field_tag 'name'  %><br /> 
+    Start Date:  <%= text_field_tag 'start_date'  %><br /> 
+    End Date:  <%= text_field_tag 'end_date'  %><br />
+    <%= submit_tag 'Create' %>
+   </p>
+  <%= end_form_tag %>
+  </div>
+
+</body>
+</html>

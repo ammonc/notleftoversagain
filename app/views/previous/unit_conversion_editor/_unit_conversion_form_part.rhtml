@@ -1,0 +1,25 @@
+ <p id="unit_conversion_<%= @unit_conversion.id %>">
+  
+  1
+
+  <span id="unit_conversion_larger_unit_id-container">
+   <select id="unit_conversion_<%= @unit_conversion.id %>_larger_unit_id" name="unit_conversion_<%= @unit_conversion.id %>[larger_unit_id]">
+    <%= options_for_select unit_options, @unit_conversion.larger_unit_id %>
+   </select>
+  </span>
+
+  =  
+ 
+  <input type="text" name="unit_conversion_<%= @unit_conversion.id %>[smaller_unit_amount]" value="<%= @unit_conversion.smaller_unit_amount %>" size="8" maxlength="8" /> 
+  
+  <span id="unit_conversion_smaller_unit_id-container">
+   <select id="unit_conversion_<%= @unit_conversion.id %>_smaller_unit_id" name="unit_conversion_<%= @unit_conversion.id %>[smaller_unit_id]">
+    <%= options_for_select unit_options, @unit_conversion.smaller_unit_id %>
+   </select>
+  </span>
+  
+  <a href="javascript:void(0);" onclick="new Ajax.Updater('ajax_status_result', '/unit_conversion_editor/update', {onLoading:function(request){ Element.show('indicator'); }, onComplete:function(request){ Element.hide('indicator'); }, parameters:'id=<%= @unit_conversion.id %>&unit_conversion[larger_unit_id]=' + $('unit_conversion_<%= @unit_conversion.id %>_larger_unit_id').value + '&unit_conversion[smaller_unit_amount]=' + encodeURIComponent( $('unit_conversion_<%= @unit_conversion.id %>_smaller_unit_amount').value ) + '&unit_conversion[smaller_unit_id]=' + $('unit_conversion_<%= @unit_conversion.id %>_smaller_unit_id').value, evalScripts:true, asynchronous:true});">Save changes</a>
+  
+  <a href="javascript:void(0);" onclick="new Ajax.Updater('ajax_status_result', '/unit_conversion_editor/delete', {onLoading:function(request){ Element.show('indicator'); }, onComplete:function(request){ Element.hide('indicator'); Element.remove('unit_conversion_<%= @unit_conversion.id %>') }, parameters:'id=<%= @unit_conversion.id %>', evalScripts:true, asynchronous:true});">Delete</a>
+ 
+ </p> 

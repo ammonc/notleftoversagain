@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Editing N Week Menu #<%= @n_week_menu.id %> named <%= @n_week_menu.name %></title>
+</head>
+<body>
+  <h1>Editing N Week Menu #<%= @n_week_menu.id %> named <%= @n_week_menu.name %></h1>
+
+  <div style="border: 1px solid maroon;">
+  <%= start_form_tag :action => 'start_new_n_week_menu' %>
+    <%= submit_tag 'Create' %>
+   </p>
+  <%= end_form_tag %>
+  </div>
+
+</body>
+</html>

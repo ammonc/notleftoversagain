@@ -1,0 +1,44 @@
+<div id="showing_recipe_<%= @recipe.id %>" style="border: 1px solid orange; margin-left: 4px; width: 300px; float: left;">
+  <h3>Recipe #<%= @recipe.id %>:  <%= @recipe.name %></h3>
+ 
+  <p><label for="recipe_category_id">Category:</label>
+  <%= @recipe.recipe_category.name %></p>
+  
+  <p><label for="recipe_rating">Rating on a scale of 1 to 10:</label>
+  <%= @recipe.rating  %></p>
+  
+  <p><label for="recipe_servings">Servings:</label>
+  <%= @recipe.servings %></p>
+
+  <p><label>Prep time:</label> 
+  <%= (!@recipe.prep_time_hours.nil? and @recipe.prep_time_hours > 0) ? "#{@recipe.prep_time_hours} hour(s) and #{@recipe.prep_time_minutes} minute(s)" : "#{@recipe.prep_time_minutes} minute(s)" %>
+  </p>
+
+  <p><label>Cook time:</label>
+  <%= (!@recipe.cook_time_hours.nil? and @recipe.cook_time_hours > 0) ? "#{@recipe.cook_time_hours} hour(s) and #{@recipe.cook_time_minutes} minute(s)" : "#{@recipe.cook_time_minutes} minute(s)" %>
+  </p>
+  
+  <label>Ingredients:</label><br />
+  <div id="ingredients" style="width: 300px;">
+   <ol id="ingredients-list">
+     <% @skip_edit_delete_links = true %>
+     <%= render_partial 'ingredients_list' %>
+   </ol>
+  </div>
+  
+  <p><label for="recipe_instructions">Instructions:</label><br/>
+  <%= @recipe.instructions.gsub('\n', '<br />\n') %></p>
+  
+  <p><label for="recipe_feedback">Feedback:</label><br/>
+  <%= @recipe.feedback.gsub('\n', '<br />\n') %></p>
+
+
+  <p><label for="recipe_source">Source:</label><br/>
+  <%= @recipe.source %></p>
+
+  <%= link_to 'Show', :action => 'show', :id => @recipe.id %>
+  <%= link_to 'Edit', :action => 'edit', :id => @recipe.id %>
+  <%= link_to 'Destroy', { :action => 'destroy', :id => @recipe.id }, :confirm => 'Are you sure?', :post => true %>
+  |
+  <%= link_to 'Back to list', :action => 'list' %>
+</div>

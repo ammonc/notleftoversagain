@@ -1,0 +1,4 @@
+<% ingredient_category_options = @ingredient_categories.collect {|ic| [ ic.name, ic.id ] } << ["New Ingredient Category...", 0] %>
+<select id="ingredient_ingredient_category_id" name="ingredient[ingredient_category_id]" onchange="ingredient_category_changed();">
+<%= options_for_select(ingredient_category_options, @new_ingredient_category.id) %>
+</select>

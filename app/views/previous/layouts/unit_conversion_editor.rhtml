@@ -1,0 +1,16 @@
+<html>
+<head>
+  <title>Unit Conversion Editor</title>
+  <% stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'scriptaculous' %>
+  <%= javascript_include_tag :defaults %>
+</head>
+<body>
+
+<p id="errors" style="color: red">Errors go here</p>
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= @content_for_layout %>
+
+</body>
+</html>

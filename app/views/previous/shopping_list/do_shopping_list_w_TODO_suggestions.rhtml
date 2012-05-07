@@ -1,0 +1,64 @@
+<h1>NWeek Menu Ingredients - Ingredients On Hand = Shopping List</h1>
+
+<h4>
+The steps necessary to generate a shopping list are
+<ol>
+  <li>Organize a menu for N weeks</li>
+  <li>Take an inventory of what you have on hand and enter it in</li>
+  <li>Click 'Go' and the computer will merge the same ingredients (like chicken or bread) needed by multiple recipes by adding the amounts, converting units as necessary with the rules you have provided, then subtracting what you have on hand.</li>
+</ol>
+</h4>
+
+<table border="1" padding="1" spacing="1">
+  <tr>
+    <th style="width: 30%;"> Ingredients and quantities needed for N week menu  </th>
+    <th style="width: 30%;"> Ingredients on hand </th>
+    <th style="width: 30%;"> Shopping list </th>
+  </tr>
+  <tr>
+    <td>
+     <% col_names = ["ingredient_category_name", "ingredient_name", "unit_name", "unit_abbrev", "amount", "recipe_name", "recipe_servings", "meal_servings"] %>
+     <% col_names = ["ingredient_category_name", "amount", "unit_abbrev", "ingredient_name", "recipe_servings", "meal_servings"] %>
+     <table border="1">
+      <tr>
+        <% for col_name in col_names do %>
+	  <th><%= col_name.gsub("_", " ").capitalize %></th>
+	<% end %>
+      </tr> 
+     <% for ingredient in @ingredients_needed_for_n_week_menu do %>
+      <tr>
+        <% for col_name in col_names do %>
+	  <td><%= ingredient.attributes[col_name] %></td>
+	<% end %>
+      </tr> 
+     <% end %> 
+     </table>
+     <p>Link to a page where you can print the ingredient list</p>
+    </td>
+    <td>
+     
+     <% for ingredient in @ingredients_on_hand do %>
+       Enter how much we have of the current ingredient
+     <% end %> 
+     button:[Save changes] (AJAX) |
+     <br />
+     
+     button:[Save changes and regenerate shopping list] (AJAX) |
+     <br />
+     [Refresh] (only necessary if you have changed any of the recipes on the N week menu) (any changes you have made will be lost)<br />
+     <p id="ajax_status" style="display: block;">
+       This will be changed to style="display: none;" and will have the cool Loading animated gif as well as the new status - which will say 'Saving changes'
+       and will change to 'Changes saved' or 'Changes saved, now regenerating shopping list', which will then change to 'New Shopping List generated'
+     </p>
+     <p>Link to a page where you can print the list of ingredients on hand</p>
+    </td>
+    <td>
+     <div id="shopping_list">
+     </div>
+   
+     Save shopping list - button - should save timestamp as well as let you give it a name (prompt for name through input box - timestamp serverside)
+     
+     <p>Link to a page where you can print the list of ingredients on hand</p>
+    </td>
+  </tr>
+</table>

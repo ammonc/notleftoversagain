@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><title>script.aculo.us - web 2.0 javascript demos</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link href="/stylesheets/scriptaculous.css" media="screen" rel="Stylesheet" type="text/css">
+  <script src="/javascripts/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <style type="text/css">
+    div.auto_complete {
+      position:absolute;
+      width:250px;
+      background-color:white;
+      border:1px solid #888;
+      margin:0px;
+      padding:0px;
+    }
+    ul.contacts  {
+      list-style-type: none;
+      margin:0px;
+      padding:0px;
+    }
+    ul.contacts li.selected { background-color: #ffb; }
+    li.contact {
+      list-style-type: none;
+      display:block;
+      margin:0;
+      padding:2px;
+      height:32px;
+    }
+    li.contact div.image {
+      float:left;
+      width:32px;
+      height:32px;
+      margin-right:8px;
+    }
+    li.contact div.name {
+      font-weight:bold;
+      font-size:12px;
+      line-height:1.2em;
+    }
+    li.contact div.email {
+      font-size:10px;
+      color:#888;
+    }
+    #list {
+      margin:0;
+      margin-top:10px;
+      padding:0;
+      list-style-type: none;
+      width:250px;
+    }
+    #list li {
+      margin:0;
+      margin-bottom:4px;
+      padding:5px;
+      border:1px solid #888;
+      cursor:move;
+    }
+    
+    th.day_of_week_name {
+      border: 1px dashed purple;
+    }
+    
+    li.day_of_week {
+      display: inline;
+      /* both of padding and margin left needed for cross-browser non-indenting of lists */
+      /*
+      margin-left: 0px;
+      padding-left: 0px;  
+      */
+      margin-right: 10px;
+    }
+    
+    ul.days_of_week {
+      list-style-type: none;  
+      /* both of padding and margin left needed for cross-browser non-indenting of lists */
+      margin-left: 0px;
+      padding-left: 0px;  
+      border: 1px dotted orange;
+    }
+
+    .meal_menu {
+      border: 1px solid orange;
+      cursor:move;
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+    
+    .scheduled_meal, .scheduled_meal-active {
+      border: 1px solid orange;
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+    
+    .scheduled_meal-active {
+      background: yellow;
+    }
+  </style></head>
+
+<body>
+  <div id="content">
+    <h1>Drag and drop menu planning</h1>
+
+<p>Drag single meal menus to the day and time you wish to serve them.  Simple as that. </p>
+
+<h2>Available meal menus:</h2>
+<table style="margin-left: 10px;">
+<tr>
+ <% for available_meal_number in 1..7 %> 
+  <td>
+   <div style="position: relative; z-index: 0; opacity: 0.99999; top: 0px; left: 0px;" class="meal_menu" id="meal_menu_<%= available_meal_number %>" >
+    <%= "Meal Menu ##{available_meal_number}" %>
+   </div>
+  </td>
+  <script type="text/javascript">new Draggable('meal_menu_<%= available_meal_number %>', {revert:true})</script>
+ <% end %>
+</tr> 
+</table>
+
+<p id="error">
+This is where the link_to_remote error would show up.
+</p>
+
+<h2>Weekly Menu (week number 1 of N):</h2>
+
+Next week link, previous link disabled
+
+<div align="center" id="weekly_menu_container" class="" style="clear: left; height: 132px; margin-top: 10px; position: relative;">  
+  <% days_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] %>
+  <% meal_times = ["7:00 am", "10:00 am", "1:00 pm", "4:00 pm", "7:00 pm", "10:00 pm"] %>
+  <% meal_names = ["Breakfast", "Second Breakfast", "Lunch", "Dinner", "Supper", "Evening Snack"] %>
+  <table style="/*width: 100%;*/">
+  <tr>
+    <th class="day_of_week_name">Meal</th>
+    <% for day_of_week in 0..6 do %>
+     <th class="day_of_week_name"><%= days_of_week[day_of_week] %></th>
+    <% end %>
+  </tr>
+  <% for meal_number in 1..6 do %>
+  <tr>
+   <td style="border: 1px dotted red; width: 14%;"><span style="font-weight: bold; color: green;"><%= meal_times[meal_number - 1]  %>:  <%= meal_names[meal_number - 1]  %></span><br />
+   </td>
+   <% for day_of_week in 0..6 do %>
+    <td id="day_of_week_<%= day_of_week %>_meal_number_<%= meal_number %>" class="scheduled_meal" style="border: 1px dotted red; width: 10%;">
+	Drop meal here!<br />
+	&nbsp;<!--reserve space for the remove link-->
+	<!-- # drop meal info here  ******TODO*******  database part -->
+	<!-- # have to deal with what to do if they drag something onto an element that already has something in it - just assume that they wanted to replace it Might be wise to confirm - do this later -->
+	<!-- # clicking remove link will remove it from the dom and also do an AJAX call to remove it in the database ********TODO****** database part -->
+    </td> 
+    <% end %>
+  </tr>
+  <% end %>
+  </table>
+  
+
+<div style="height: 40px; padding-top: 10px;">
+<p id="indicator" style="margin-top: 0px; display: none;">
+  <img alt="Indicator" src="/images/indicator.gif"> Updating menu...
+</p>
+</div>
+
+<script type="text/javascript">
+<% weekly_menu_id = 7 %>
+<% daily_menu_id = 698 %>
+<% for day_of_week in 0..6 do %>
+  <% for meal_number in 1..6 do %>
+    Droppables.add('day_of_week_<%= day_of_week %>_meal_number_<%= meal_number %>', {accept:'meal_menu', onDrop:function(element){ 
+      //alert('<%= "Meal scheduled for #{days_of_week[day_of_week]} at #{meal_times[meal_number - 1]} for meal #{meal_names[meal_number - 1]}" %>'); 
+      new Ajax.Updater('day_of_week_<%= day_of_week %>_meal_number_<%= meal_number %>', '/drag_n_drop_sandbox/schedule_meal_day_and_week', {onLoading:function(request){Element.show('indicator')}, onComplete:function(request){Element.hide('indicator')}, parameters:'single_meal_menu_id=' + encodeURIComponent(element.id) + '&day_of_week=<%= day_of_week %>&meal_number=<%= meal_number %>&weekly_menu_id=<%= weekly_menu_id %>&daily_menu_id=<%= daily_menu_id %>' , evalScripts:true, asynchronous:true});
+      }, hoverclass:'scheduled_meal-active'});
+  <% end %>
+<% end %>
+</script>
+</body></html>

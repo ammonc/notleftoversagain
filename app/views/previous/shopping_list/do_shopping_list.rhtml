@@ -1,0 +1,63 @@
+<h1>Ingredients for Multi-week Menu - Ingredients On Hand ==> Shopping List</h1>
+
+<h4>
+The steps necessary to generate a shopping list are
+<ol>
+  <!--<li>Organize a menu for N weeks (done)</li>-->
+  <li>Take an inventory of what you have on hand and enter it in (here)</li>
+  <li>Click 'Go' and the computer will merge the same ingredients (like chicken or bread) needed by multiple recipes by adding the amounts, converting units as necessary with the rules you have provided, then subtracting what you have on hand.</li>
+</ol>
+</h4>
+
+<table border="1" padding="1" spacing="1">
+  <tr>
+    <th style="width: 30%;"> Ingredients and quantities needed for N week menu  </th>
+    <th style="width: 30%;"> Shopping list </th>
+  </tr>
+  <tr>
+    <td>
+     <%= start_form_tag :action => 'generate_shopping_list' %><!-- TODO:  Change to form_remote_tag -->
+       <% ingredient_unit_options = @units.collect {|iu| [ iu.abbrev, iu.id ] } %>
+       <% col_names = ["ingredient_category_name", "ingredient_name", "unit_name", "unit_abbrev", "amount", "recipe_name", "recipe_servings", "meal_servings"] %>
+       <% col_names = ["ingredient_category_name", "amount", "unit_abbrev", "ingredient_name", "recipe_servings", "meal_servings"] %>
+       <% col_names = ["unit_abbrev", "ingredient_name"] %>
+       <% for ingredient_category_name in @ingredient_category_names %>
+	 <div>
+	  <h4 style="color: green;">Ingredient Category: <%= ingredient_category_name %></h4>
+	  <table border="1">
+	    <tr>
+		<th>Amount needed</th>
+	      <% for col_name in col_names do %>
+		<th><%= col_name.gsub("_", " ").capitalize %></th>
+	      <% end %>
+		<th>Amount on hand</th>
+	    </tr> 
+	   <% for ingredient in @ingredients_needed_for_n_week_menu_by_category[ingredient_category_name] do %>
+	    <tr>
+		<td><%= ingredient.attributes["amount"].to_f * ingredient.attributes["recipe_servings"].to_f * ingredient.attributes["meal_servings"].to_f %></td>
+	      <% for col_name in col_names do %>
+		<td><%= ingredient.attributes[col_name] %></td>
+	      <% end %>
+		<td>
+		  <input id="something_else_unique" type="text" size="4" name="ingredient_on_hand_amount" value="0" />
+		  
+		  <select id="something_unique" name="ingredient_on_hand_unit" >
+		    <%= options_for_select ingredient_unit_options, ingredient.attributes["unit_id"]  %>
+		  </select>
+		</td>
+	    </tr> 
+	   <% end %> 
+	  </table>
+	</div>
+      <% end %> 
+      <%= submit_tag 'Generate Shopping List' %>
+     </form> 
+    </td>
+    <td>
+     <div id="ajax_shopping_list">
+     </div>
+     <br />
+     <p>Link to a page where you can print the list of ingredients on hand</p>
+    </td>
+  </tr>
+</table>

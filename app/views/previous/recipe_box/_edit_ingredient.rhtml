@@ -1,0 +1,6 @@
+<%= render_partial 'ingredient_form' %>
+<br />
+<a href="#" onclick="new Ajax.Updater('ingredients-list', '/recipe_box/update_ingredient', {onLoading:function(request){ Element.show('indicator');  }, onComplete:function(request){Element.hide('indicator'); Element.hide('form_div'); Element.show('add_div'); }, parameters:'ingredient[recipe_id]=<%= @recipe.id %>&ingredient[id]=<%= @ingredient.id %>&ingredient[amount]=' + encodeURIComponent($('ingredient_amount').value) + '&ingredient[name]=' + encodeURIComponent($('ingredient_name').value) + '&ingredient[ingredient_category_id]=' + encodeURIComponent($('ingredient_ingredient_category_id').value) + '&ingredient[unit_id]=' + encodeURIComponent($('ingredient_unit_id').value), evalScripts:true, asynchronous:true});">Update</a>
+| <a href="#" onclick="Element.hide('form_div'); Element.show('ingredient_<%= @ingredient.id %>');  Element.show('add_div');">Cancel</a>
+
+

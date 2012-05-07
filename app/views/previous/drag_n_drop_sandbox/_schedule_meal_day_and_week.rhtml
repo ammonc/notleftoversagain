@@ -1,0 +1,5 @@
+Meal Menu #<%= @single_meal_menu_id %><br />&nbsp;  
+<%= link_to_remote "Unschedule meal",
+  :url => { :action => "unschedule_meal_day_and_week", :weekly_menu_id => @weekly_menu_id, :daily_menu_id => @daily_menu_id, :meal_number => @meal_number },
+  :update => { :success => "day_of_week_#{@day_of_week}_meal_number_#{@meal_number}", :failure => "error" } %>
+  

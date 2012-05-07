@@ -1,0 +1,3 @@
+Meal Menu #<%= @sdm_id  %><br />&nbsp; <!-- nbsp is to reserve space for the remove link--> 
+<a href="javascript:void(0);" onclick="new Ajax.Updater('single_day_menu_id_<%= @sdm_id %>_meal_of_day_number_<%= @meal_of_day_number %>', '/menu_planner/unschedule_meal', {onLoading:function(request) { Element.show('indicator') }, onComplete:function(request) { Element.hide('indicator') }, parameters:'id=<%= @sdm_smm_id %>' , evalScripts:true, asynchronous:true});">Unschedule meal</a>
+  

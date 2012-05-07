@@ -1,0 +1,68 @@
+<%= error_messages_for 'recipe' %>
+
+<!--[form:recipe]-->
+<table>
+<tbody>
+ <tr>
+  <td style="vertical-align: top;">
+  <p><label for="recipe_name">Name</label><br/>
+  <%= text_field 'recipe', 'name'  %></p>
+
+  <p><label for="recipe_dish_category_id">Recipe Dish Category</label>
+    <% recipe_dish_category_options = @dish_categories.collect {|rdc| [ rdc.name, rdc.id ] } %>
+    <%= select 'recipe', 'dish_category_id', recipe_dish_category_options %></p>
+    
+  <p><label for="recipe_category_id">Category</label>
+    <% recipe_category_options = @recipe_categories.collect {|rc| [ rc.name, rc.id ] } %>
+    <%= select 'recipe', 'recipe_category_id', recipe_category_options %></p>
+  
+  <p><label for="recipe_servings">Servings </label>
+  <%= text_field 'recipe', 'servings', {:size => 2}  %></p>
+
+  <p><label>Prep time hours:minutes</label> 
+  <%= text_field 'recipe', 'prep_time_hours', {:size => 2}  %>:
+  <%= text_field 'recipe', 'prep_time_minutes', {:size => 2}  %>
+  </p>
+
+  <p><label>Cook time hours:minutes </label>
+  <%= text_field 'recipe', 'cook_time_hours', {:size => 2}  %>:
+  <%= text_field 'recipe', 'cook_time_minutes', {:size => 2}  %></p>
+</td>
+<% if @mode == "edit" %>
+<td style="vertical-align: top;">
+  <label>Ingredients</label><br />
+  <div id="ingredients" style="width: 300px;">
+    <p id="indicator" style="margin-top: 0px; display: none;">
+      <img alt="Indicator" src="/images/indicator.gif"> Performing action in the background...
+    </p>
+   <ol id="ingredients-list">
+     <%= render_partial 'ingredients_list' %>
+   </ol>
+   <div id="form_div" style="display: none">
+   </div> 
+   <div id="add_div">
+    <a href="#" onclick="new Ajax.Updater('form_div', '/recipe_box/add_ingredient', {onLoading:function(request){ Element.show('indicator'); Element.hide('add_div'); Element.show('form_div'); }, onComplete:function(request){Element.hide('indicator') }, parameters:'recipe_id=<%= @recipe.id %>', evalScripts:true, asynchronous:true});">Add an ingredient</a>
+   </div> 
+  </div>
+  <p><label for="recipe_instructions">Instructions</label><br/>
+  <%= text_area 'recipe', 'instructions', {"cols" => 30, "rows" => 10}  %></p>
+  
+</td>
+<td style="vertical-align: top;">
+  <p><label for="recipe_feedback">Feedback</label><br/>
+  <%= text_area 'recipe', 'feedback', {"cols" => 30, "rows" => 10}  %></p>
+
+  <p><label for="recipe_rating">Rating on a scale of 1 to 10</label>
+  <%= text_field 'recipe', 'rating', {:size => 2}  %></p>
+
+  <p><label for="recipe_source">Source</label><br/>
+  <%= text_field 'recipe', 'source'  %></p>
+ </td>
+<% end %>
+</tr>
+</tbody>
+</table>
+  
+  
+<!--[eoform:recipe]-->
+

@@ -1,0 +1,19 @@
+<% for dish_category in @dish_categories do %>
+  <b><%= dish_category.name %></b>
+  <div style="border: 1px solid aqua;">
+   <% unless @smm_recipes_by_dish_category[dish_category.id].nil? %>
+     <ul style="list-style-type: none;">
+     <% for recipe in @smm_recipes_by_dish_category[dish_category.id] do %>
+      <li>
+       <%= recipe.name %> 
+      <a href="javascript:void(0);" onclick="new Ajax.Updater('meal_div', '/menu_planner/delete_recipe_from_meal', {onLoading:function(request){ Element.show('indicator'); }, onComplete:function(request){Element.hide('indicator'); }, parameters:'recipe_id=<%= recipe.id %>&single_meal_menu_id='+single_meal_menu_id, evalScripts:true, asynchronous:true});">Remove Recipe From Meal Menu</a>
+      </li> 
+     <% end %>
+     </ul>
+   <% else %>
+     No associated recipes yet.
+   <% end %>  
+  </div>
+  <br /> 
+<% end %>
+<script type="text/javascript"> single_meal_menu_id = <%= @smm.id %>; </script>

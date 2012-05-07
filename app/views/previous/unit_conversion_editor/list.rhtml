@@ -1,0 +1,84 @@
+
+<h1>Unit Conversion Editor</h1>
+<h3> (w/ fancy AJAX magic)</h3>
+<% unit_options = @units.collect {|u| [ u.abbrev, u.id ] } %>
+
+<form method="post">
+<!--[form:unit_conversion]-->
+<div id="inside_of_form">
+<p>All defined unit conversions</p>
+<% for @unit_conversion in @unit_conversions do %>
+  <%= render :partial => 'unit_conversion_form_part', :locals => {:unit_options => unit_options}  %>
+<% end %>
+</div>
+<!--[eoform:unit_conversion]-->
+</form>
+
+<hr/>
+
+<div id="ajax_status_result" style="color: green;">
+&nbsp;
+</div>
+  
+<div id="add_div">
+  <p>New Unit Conversion Form</p>
+  <form id="add_form" name="add_form" method="post">
+    1 
+    <select id="new_unit_conversion_larger_unit_id" name="new_unit_conversion[larger_unit_id]">
+    <%= options_for_select unit_options %>
+    </select>
+     =  
+    <input type="text" id="new_unit_conversion_smaller_unit_amount" name="new_unit_conversion[smaller_unit_amount]" value="" /> 
+     
+    <select id="new_unit_conversion_smaller_unit_id" name="new_unit_conversion[smaller_unit_id]">
+    <%= options_for_select unit_options %>
+    </select>
+    
+    <a href="javascript:void(0);" onclick="new Ajax.Updater('inside_of_form', '/unit_conversion_editor/create', {onLoading:function(request){ Element.show('indicator'); }, onComplete:function(request){ Element.hide('indicator'); }, parameters:'unit_conversion[larger_unit_id]=' + $('new_unit_conversion_larger_unit_id').value + '&unit_conversion[smaller_unit_id]=' + $('new_unit_conversion_smaller_unit_id').value + '&unit_conversion[smaller_unit_amount]=' + encodeURIComponent( $('new_unit_conversion_smaller_unit_amount').value ), insertion: Insertion.Bottom, evalScripts:true, asynchronous:true});">Add</a>
+  </form>
+</div>
+
+<hr/>
+
+<p id="indicator" style="margin-top: 0px; display: none;">
+  <img id="indicator_image" alt="Indicator" src="/images/indicator.gif" /> <span id="ajax_status_text">Performing action in the background...</span>
+</p>
+
+<p>
+  Test conversion from larger unit to smaller unit:
+  <form id="convert_large_to_small_form" name="convert_large_to_small_form" method="post" onsubmit="new Ajax.Updater('ajax_smaller_unit_amount', '/unit_conversion_editor/convert_large_to_small', {onLoading:function(request){ Element.show('indicator'); }, onComplete:function(request){ Element.hide('indicator'); }, parameters:'larger_unit_id=' + $('lts_unit_conversion_larger_unit_id').value + '&smaller_unit_id=' + $('lts_unit_conversion_smaller_unit_id').value, evalScripts:true, asynchronous:true});">
+    1 
+    <select id="lts_unit_conversion_larger_unit_id" name="lts_unit_conversion[larger_unit_id]">
+    <%= options_for_select unit_options %>
+    </select>
+     =  
+    <span id="ajax_smaller_unit_amount"> ____ </span> 
+     
+    <select id="lts_unit_conversion_smaller_unit_id" name="lts_unit_conversion[smaller_unit_id]">
+    <%= options_for_select unit_options %>
+    </select>
+    
+    <%= submit_tag "Test conversion" %>
+  </form>
+</p>
+
+<hr/>
+
+<p>
+  Test conversion from smaller unit to larger unit:
+  <form id="convert_small_to_large_form" name="convert_small_to_large_form" method="post" onsubmit="new Ajax.Updater('ajax_larger_unit_amount', '/unit_conversion_editor/convert_small_to_large', {onLoading:function(request){ Element.show('indicator'); }, onComplete:function(request){ Element.hide('indicator'); }, parameters:'larger_unit_id=' + $('stl_unit_conversion_larger_unit_id').value + '&smaller_unit_id=' + $('stl_unit_conversion_smaller_unit_id').value + '&larger_unit_amount=' + encodeURIComponent( $('stl_unit_conversion_larger_unit_amount').value ), evalScripts:true, asynchronous:true});">
+    <input type="text" id="stl_unit_conversion_larger_unit_amount" name="stl_unit_conversion[larger_unit_amount]" size="8" maxlength="8" />
+    <select id="stl_unit_conversion_larger_unit_id" name="stl_unit_conversion[larger_unit_id]">
+    <%= options_for_select unit_options %>
+    </select>
+     =  
+    <span id="ajax_smaller_unit_amount"> ____ </span> 
+     
+    <select id="stl_unit_conversion_smaller_unit_id" name="stl_unit_conversion[smaller_unit_id]">
+    <%= options_for_select unit_options %>
+    </select>
+    
+    <%= submit_tag "Test conversion" %>
+  </form>
+</p>
+

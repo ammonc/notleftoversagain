@@ -1,0 +1,53 @@
+<fieldset>
+	<div class="row">
+		<!--[form:recipe]-->
+<div class="form-element">
+  <label for="recipe_name">Name</label>
+  <%= text_field 'recipe', 'name' , {:class=>"text-input"} %>
+</div>
+
+<div class="form-element">
+  <label>Prep time hours:minutes</label>
+  <%= text_field 'recipe', 'prep_time_hours' , {:size => "2", :class=>"text-input"} %>:
+  <%= text_field 'recipe', 'prep_time_minutes' , {:size => "2", :class=>"text-input"} %>
+</div>
+
+<div class="form-element">
+  <label>Cook time hours:minutes</label>
+  <%= text_field 'recipe', 'cook_time_hours' , {:size => "2", :class=>"text-input"} %>
+  <%= text_field 'recipe', 'cook_time_minutes' , {:size => "2", :class=>"text-input"} %>
+</div>
+
+<div class="form-element">
+  <label for="recipe_servings">Servings</label>
+  <%= text_field 'recipe', 'servings' , {:size => "2", :class=>"text-input"} %>
+</div>
+<br />
+
+<div class="form-element">
+  <label for="recipe_feedback">Feedback</label>
+  <%= text_area 'recipe', 'feedback'  %>
+</div>
+
+<div class="form-element">
+  <label for="recipe_rating">Rating</label>
+  <%= text_field 'recipe', 'rating' , {:size => "2", :class=>"text-input"} %>
+</div>
+<br />
+
+<div class="form-element">
+  <label for="recipe_source">Source</label>
+  <%= text_field 'recipe', 'source' , {:class=>"text-input"} %>
+</div>
+<br />
+
+<div class="form-element">
+  <label for="recipe_category_id">Category</label>
+  <% recipe_category_options = @recipe_categories.collect {|rc| [ rc.name, rc.id ] } %>
+  <%= select_tag 'recipe[recipe_category_id]', options_for_select(recipe_category_options, @recipe.recipe_category_id) %>
+</div>
+
+<!--[eoform:recipe]-->
+
+	</div>
+</fieldset>

@@ -1,0 +1,18 @@
+    <h2>Existing Meal Menus</h2>
+    <a href="javascript:void(0);" onclick="single_meal_menu_id = 0; new Ajax.Updater('meal_div', '/menu_planner/show_single_meal', {onLoading:function(request){ Element.show('indicator'); }, onComplete:function(request){Element.hide('indicator'); }, parameters:'single_meal_menu_id='+single_meal_menu_id, evalScripts:true, asynchronous:true});">Add Meal Menu</a> |
+    <a href="javascript:void(0);" onclick="new Ajax.Updater('meal_list_div', '/menu_planner/list_all_meals', {onLoading:function(request){ Element.show('indicator'); Element.hide('meal_list_div'); }, onComplete:function(request){Element.hide('indicator'); Element.show('meal_list_div'); }, parameters:'', evalScripts:true, asynchronous:true});">Refresh Meal Menu List</a>
+    <ol id="smm_complete_list">
+      <% for smm in @single_meal_menus do %>
+      <% smm_id = smm.id %>
+	<li id="single_meal_menu_<%= smm_id %>">
+	  <%= smm_recipe_list_str = smm.recipes.collect { |r| r.name }.join(", ")  %>
+          <a href="javascript:void(0);" onclick="single_meal_menu_id = <%= smm.id %>; new Ajax.Updater('meal_div', '/menu_planner/show_single_meal', {onLoading:function(request){ Element.show('indicator'); }, onComplete:function(request){Element.hide('indicator'); }, parameters:'single_meal_menu_id='+single_meal_menu_id, evalScripts:true, asynchronous:true});">Show/Edit</a> 
+	  |
+	  
+          <a href="javascript:void(0);" onclick="if ( (<%= smm_id %> != single_meal_menu_id) || ( (<%= smm_id %> == single_meal_menu_id) && confirm('Are you sure you want to delete the meal menu that youre currently working on?') ) ) { new Ajax.Updater('ajax_status', '/menu_planner/delete_single_meal', {onLoading:function(request){ Element.remove('single_meal_menu_<%= smm_id %>'); Element.show('indicator');  }, onComplete:function(request){ Element.hide('indicator'); $('meal_div').innerHTML = 'Deleted meal menu #<%= smm_id %>' }, parameters:'single_meal_menu_id=<%= smm_id %>', evalScripts:true, asynchronous:true}); if (<%= smm_id %> == single_meal_menu_id) { single_meal_menu_id = -1; /* no meal menu currently loaded */ $('meal_div').innerHTML = 'Click *Add Meal Menu* to the right to prepare a blank meal menu.'; } }">Delete</a>
+	</li>
+      <% end %>
+    </ol>
+    <a href="javascript:void(0);" onclick="single_meal_menu_id = 0; new Ajax.Updater('meal_div', '/menu_planner/show_single_meal', {onLoading:function(request){ Element.show('indicator'); }, onComplete:function(request){Element.hide('indicator'); }, parameters:'single_meal_menu_id='+single_meal_menu_id, evalScripts:true, asynchronous:true});">Add Meal Menu</a>
+
+    <div id="ajax_status"></div>

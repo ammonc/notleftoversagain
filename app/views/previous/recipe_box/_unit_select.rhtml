@@ -1,0 +1,4 @@
+<% unit_options = @units.collect {|u| [ u.abbrev, u.id ] } << ["New Unit...", 0] %>
+<select id="ingredient_unit_id" name="ingredient[unit_id]" onchange="unit_changed();">
+<%= options_for_select(unit_options, @new_unit.id) %>
+</select>

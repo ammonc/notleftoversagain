@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><title>script.aculo.us - web 2.0 javascript demos</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link href="/stylesheets/scriptaculous.css" media="screen" rel="Stylesheet" type="text/css">
+  <script src="/javascripts/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <style type="text/css">
+    div.auto_complete {
+      position:absolute;
+      width:250px;
+      background-color:white;
+      border:1px solid #888;
+      margin:0px;
+      padding:0px;
+    }
+    ul.contacts  {
+      list-style-type: none;
+      margin:0px;
+      padding:0px;
+    }
+    ul.contacts li.selected { background-color: #ffb; }
+    li.contact {
+      list-style-type: none;
+      display:block;
+      margin:0;
+      padding:2px;
+      height:32px;
+    }
+    li.contact div.image {
+      float:left;
+      width:32px;
+      height:32px;
+      margin-right:8px;
+    }
+    li.contact div.name {
+      font-weight:bold;
+      font-size:12px;
+      line-height:1.2em;
+    }
+    li.contact div.email {
+      font-size:10px;
+      color:#888;
+    }
+    #list {
+      margin:0;
+      margin-top:10px;
+      padding:0;
+      list-style-type: none;
+      width:250px;
+    }
+    #list li {
+      margin:0;
+      margin-bottom:4px;
+      padding:5px;
+      border:1px solid #888;
+      cursor:move;
+    }
+  </style></head>
+
+<body>
+
+  
+<div id="content">
+<h1>Sortable lists</h1>
+
+<p>Drag and drop items to reorder!</p>
+<ul id="list">
+<% 6.times do |i| -%>
+<li id="item_<%= i+1 %>">I'm number <%= i+1 %></li>
+<% end -%>
+</ul>
+
+<p id="list-info"></p>
+
+<%= sortable_element 'list', 
+  :update => 'list-info',  
+  :complete => visual_effect(:highlight, 'list'), 
+  :url => { :action => "order" } %>
+      
+<p><a href="#" onclick="new Effect.SlideDown('source'); return false;">View source</a></p>
+<pre id="source" style="display: none;"><code>
+# view
+&lt;ul id="list"&gt;
+  &lt;% 6.times do |i| -%&gt;
+  &lt;li id="item_&lt;%= i+1 %&gt;"&gt;I'm number &lt;%= i+1 %&gt;&lt;/li&gt;
+  &lt;% end -%&gt;
+&lt;/ul&gt;
+
+&lt;p id="list-info"&gt;&lt;/p&gt;
+
+&lt;%= sortable_element 'list', 
+      :update =&gt; 'list-info',  
+      :complete =&gt; visual_effect(:highlight, 'list'), 
+      :url =&gt; { :action =&gt; "order" } %&gt;
+      
+# controller
+def order
+    @order = params[:list]
+    render :partial =&gt; 'list'
+end
+
+# _list.rhtml partial
+Updated order is: &lt;%= @order.join(', ') %&gt;.
+</code></pre>
+</div>
+
+</body></html>
+
+
+
+
+
+

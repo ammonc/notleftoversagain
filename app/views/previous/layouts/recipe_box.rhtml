@@ -1,0 +1,95 @@
+<html>
+<head>
+  <title>RecipeBox</title>
+  <%= javascript_include_tag :defaults %>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/tabcontent.css">
+  <script type="text/javascript" src="/javascripts/tabcontent.js">
+    /***********************************************
+    * Tab Content script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+    * This notice MUST stay intact for legal use
+    * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+    ***********************************************/
+  </script>
+  <style type="text/css">
+    #outer {display:block; position:relative; background:#eee; padding:2em; text-align:center;}
+    #outer h2 {margin-bottom:1em;}
+
+    #navigation {background:transparent; margin:0 auto; height:3em;
+    /* hide overflow:hidden from IE5/Mac */ 
+    /* \*/ 
+    overflow: hidden; 
+    /* */ }
+
+    #navigation ul {margin:0; padding:0; list-style-type:none; background:transparent;}
+    #navigation li {display:block; float:left; margin:0 1px;}
+    .snazzy {background:transparent;}
+    .snazzy span {text-align:center; color:#fff; margin:0; font-weight:normal;}
+
+    .b1, .b2, .b3, .b4 {display:block; font-size:1px;
+    /* hide overflow:hidden from IE5/Mac */ 
+    /* \*/ 
+    overflow: hidden; 
+    /* */ }
+    .b1, .b2, .b3 {height:1px;}
+    .b2, .b3, .b4 {border-left:1px solid #fff; border-right:1px solid #fff;}
+    .b1 {margin:0 5px; background:#fff;}
+    .b2 {margin:0 3px; border-width:0 2px;}
+    .b3 {margin:0 2px;}
+    .b4 {height:2px; margin:0 1px;}
+    .boxcontent {display:block; border-left:1px solid #fff; border-right:1px solid #fff;}
+
+    a.menu, a.menu:visited {display:block; text-decoration:none; width:5.5em;}
+    a.menu:hover {background:transparent; cursor:pointer;}
+    a.menu:hover span {padding-top:10px; background:#888;}
+    a.menu:hover b {background:#888;} 
+
+    .red {background:#c00;}
+    .orange {background:#f90;}
+    .yellow {background:#b8b800;}
+    .green {background:#090;}
+    .blue {background:#00c;}
+    .indigo {background:#309;}
+    .violet {background:#c6c;}
+    .grey {background:#888;}
+
+    a:hover b.red {background:#888;}
+    a:hover b.orange {background:#888;}
+    a:hover b.yellow {background:#888;}
+    a:hover b.green {background:#888;}
+    a:hover b.blue {background:#888;}
+    a:hover b.indigo {background:#888;}
+    a:hover b.violet {background:#888;}
+
+    .active {padding-top:10px; background:#888; cursor:default;}
+
+
+    #navigation2 {clear:both; background:transparent; margin:0 auto; height:3em;
+    /* hide overflow:hidden from IE5/Mac */ 
+    /* \*/ 
+    overflow: hidden; 
+    /* */ }
+
+    #navigation2 ul {margin:0; padding:0; list-style-type:none; background:transparent;}
+    #navigation2 li {display:block; float:left; margin:0 1px;}
+
+    .pad {display:block; height:1em;
+    /* hide overflow:hidden from IE5/Mac */ 
+    /* \*/ 
+    overflow: hidden; 
+    /* */ }
+
+    a.menu2, a.menu2:visited {display:block; text-decoration:none; width:5.5em;}
+    a.menu2:hover {background:transparent; cursor:pointer;}
+    a.menu2:hover .boxcontent {padding-bottom:0.8em; background:#888;}
+    a.menu2:hover .pad {height:0.2em;}
+  </style>
+</head>
+<body>
+
+<p id="errors" style="color: red"><!--Errors go here--></p>
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= @content_for_layout %>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+<ul class="recipes">
+  <% for recipe in @recipes do -%>
+    <li id="recipe_search_result_<%= recipe.id %>" class="recipe" style="cursor: move;"><div class="name"><%=h recipe.name %></div></li>
+    <script type="text/javascript">new Draggable('recipe_search_result_<%= recipe.id %>', {revert:true})</script>
+  <% end -%>
+</ul>
+<!--<a href="#" onclick="alert($('recipe_search_results').innerHTML);">Show 'recipe_search_results' innerHTML</a>-->

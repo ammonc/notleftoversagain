@@ -1,0 +1,9 @@
+<ul class="recipes">
+  <% for recipe in @recipes do -%>
+    <li id="recipe_search_result_<%= recipe.id %>" class="recipe">
+     <b><%=h recipe.name %></b> 
+     <a href="javascript:void(0);" onclick="if (single_meal_menu_id != -1) { new Ajax.Updater('meal_div', '/menu_planner/add_recipe_to_meal', {onLoading:function(request){ Element.show('indicator'); }, onComplete:function(request){Element.hide('indicator'); }, parameters:'recipe_id=<%= recipe.id %>&single_meal_menu_id='+single_meal_menu_id, evalScripts:true, asynchronous:true}); } else { alert('No meal menu defined yet to add recipe to.  Use the *New Meal Menu link above and below the list of meal menus to create one.*'); }">Add Recipe to Meal Menu</a>
+      <!--AJAX:  Add to meal menu currently up.  If no meal menu currently displayed, display error message instead. -->
+    </li>
+  <% end -%>
+</ul>

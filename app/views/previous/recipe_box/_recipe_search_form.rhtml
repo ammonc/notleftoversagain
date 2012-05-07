@@ -1,0 +1,40 @@
+<!--[form:recipe_search]-->
+<%=  form_remote_tag :url => {:action => "do_recipe_search"}, :update => 'recipe_search_results'  %>
+<!--<form id="recipe_search_form">-->
+  <p>
+  <label for="recipe_name">Name</label>
+  <%= text_field 'recipe', 'name'  %></p>
+
+  <p>
+  <label for="recipe_dish_category_id">Dish Category</label>
+    <% dish_category_options = [['All', 0]] + @dish_categories.collect {|dc| [ dc.name, dc.id ] } %>
+    <%= select 'recipe', 'dish_category_id', dish_category_options %></p>
+  
+  <p>
+  <label for="recipe_category_id">Recipe Category</label>
+    <% recipe_category_options = [['All', 0]] + @recipe_categories.collect {|rc| [ rc.name, rc.id ] } %>
+    <%= select 'recipe', 'recipe_category_id', recipe_category_options %></p>
+  
+  <p>
+    <label>Prep and Cook Time less than </label> 
+    <input type="text" id="recipe_time_limit_hours" name="recipe[time_limit_hours]" size="2" /> :
+    <input type="text" id="recipe_time_limit_minutes" name="recipe[time_limit_minutes]" size="2" />
+  </p>
+  
+  <p><label>Ingredient:</label>
+  <%= text_field 'ingredient', 'name', {:size => 20}  %></p>
+
+  <p><label for="recipe_rating">Rated at least (scale of 1 to 10)</label>
+  <%= text_field 'recipe', 'rating', {:size => 2}  %></p>
+
+  <p><label for="recipe_source">Source</label><br/>
+  <%= text_field 'recipe', 'source'  %></p>
+  
+  <%= submit_tag 'Submit'  %></p>
+</form>
+
+
+<% observe_form 'recipe_search_form', {:url => {:action => 'do_recipe_search'}, :update => 'recipe_search_results', :position => :bottom, :frequency => '1.5', :loading => "Element.show('indicator')", :complete => "Element.hide('indicator')"}  %>
+
+<% # Events don't seem to fire until after you move away from the textbox - combo boxes change right away when clicked;  :frequency => '0.1', issues too many server calls while typing  %>
+<!--[eoform:recipe_search]-->

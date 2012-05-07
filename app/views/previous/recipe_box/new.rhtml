@@ -1,0 +1,8 @@
+<h1>New recipe</h1>
+
+<%= start_form_tag :action => 'create' %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Create and Proceed to enter ingredients and instructions" %>
+<%= end_form_tag %>
+
+<%= link_to 'Back', :action => 'list' %>

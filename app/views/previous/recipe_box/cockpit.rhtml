@@ -1,0 +1,134 @@
+
+<h1>My Recipe Box</h1>
+If it actually looked like a recipe box, that would be way cool.
+
+<div id="navigation2">
+  <ul>
+    <li>
+      <a class="menu2" href="#nogo"><b class="pad"></b><b class="snazzy"><b class="b1"></b><b class="b2 red"></b><b class="b3 red"></b><b class="b4 red"></b><span class="boxcontent red">item #1</span>
+    </b></a>
+    </li>
+    <li>
+      <a class="menu2" href="#nogo">
+        <b class="pad"></b><b class="snazzy"><b class="b1"></b><b class="b2 orange"></b><b class="b3 orange"></b><b class="b4 orange"></b><span class="boxcontent orange">item #2</span></b>
+      </a>
+    </li>
+    <li>
+      <a class="menu2" href="#nogo"><b class="pad"></b><b class="snazzy"><b class="b1"></b><b class="b2 yellow"></b><b class="b3 yellow"></b><b class="b4 yellow"></b><span class="boxcontent yellow">item #3</span>
+    </b></a>
+    </li>
+    <li>
+      <a class="menu2" href="#nogo"><b class="pad"></b><b class="snazzy"><b class="b1"></b><b class="b2 green"></b><b class="b3 green"></b><b class="b4 green"></b><span class="boxcontent green">item #4</span>
+    </b></a>
+    </li>
+    <li>
+      <a class="menu2" href="#nogo"><b class="pad"></b><b class="snazzy"><b class="b1"></b><b class="b2 blue"></b><b class="b3 blue"></b><b class="b4 blue"></b><span class="boxcontent blue">item #5</span>
+    </b></a>
+    </li>
+    <li>
+      <a class="menu2" href="#nogo"><b class="pad"></b><b class="snazzy"><b class="b1"></b><b class="b2 indigo"></b><b class="b3 indigo"></b><b class="b4 indigo"></b><span class="boxcontent indigo">item #6</span>
+    </b></a>
+    </li>
+    <li>
+      <a class="menu2" href="#nogo"><b class="pad"></b><b class="snazzy"><b class="b1"></b><b class="b2 violet"></b><b class="b3 violet"></b><b class="b4 violet"></b><span class="boxcontent violet">item #7</span>
+    </b></a>
+    </li>
+  </ul>
+</div>
+
+<ul id="maintab" class="shadetabs">
+  <li class=""><a href="#" rel="birdcontent">Bird</a></li>
+  <li class=""><a href="#" rel="dogcontent">Dog</a></li>
+  <li class=""><a href="#" rel="catcontent">Cat</a></li>
+  <li class="selected"><a href="#" rel="ottercontent">Otter</a></li>
+</ul>
+
+<div class="tabcontentstyle">
+  <div style="display: none;" id="birdcontent" class="tabcontent">
+    Birds are bipedal, warm-blooded, oviparous vertebrate animals
+    characterized primarily by feathers, forelimbs modified as wings, and
+    hollow bones.
+    <br style="clear: left;" />
+  </div>
+
+  <div style="display: none;" id="dogcontent" class="tabcontent">
+    The
+    dog is a mammal in the order Carnivora. Dogs were first domesticated
+    from wolves at least 17,000 years ago [1], but perhaps as early as
+    150,000 years ago based upon recent genetic fossil and DNA evidence
+    [2][3]. In this time, the dog has developed into hundreds of breeds
+    with a great degree of variation.
+    <br style="clear: left;" />
+  </div>
+
+  <div style="display: none;" id="catcontent" class="tabcontent">
+    The
+    cat, also called the domestic cat or house cat, is a small feline
+    carnivorous mammal of the subspecies Felis silvestris catus. Its most
+    immediate pre-domestication ancestor is believed to be the African wild
+    cat, Felis silvestris lybica. The cat has been living in close
+    association with humans for between 3,500 and 8,000 years
+    <br style="clear: left;" />
+  </div>
+
+  <div style="display: block;" id="ottercontent" class="tabcontent">
+    Otters
+    are aquatic or marine carnivorous mammals, members of the large and
+    diverse family Mustelidae, which also includes weasels, polecats,
+    badgers, and others. There are 13 species of otter in 7 genera, with a
+    distribution that is almost worldwide.
+    <br style="clear: left;" />
+  </div>
+
+</div>
+
+<%= link_to 'Enter a new recipe', :action => 'new' %>
+
+<div id="show_my_recipes_container" style="">
+<% for @recipe in @recipes %>
+  <%= render_partial 'show_recipe' %>
+  <!--
+  <br />
+  <hr style="width: 300px;" />
+  <br />
+  -->
+<% end %>
+</div>
+
+
+<div id="show_my_friends_recipes_container" style="">
+<% for @recipe in @recipes %>
+  <%= render_partial 'show_recipe' %>
+  <!--
+  <br />
+  <hr style="width: 300px;" />
+  <br />
+  -->
+<% end %>
+</div>
+
+
+<div id="show_community_recipes_container" style="">
+<% for @recipe in @recipes %>
+  <%= render_partial 'show_recipe' %>
+  <!--
+  <br />
+  <hr style="width: 300px;" />
+  <br />
+  -->
+<% end %>
+</div>
+
+
+
+<br />
+
+<%= link_to 'Previous page', { :page => @recipe_pages.current.previous } if @recipe_pages.current.previous %>
+<%= link_to 'Next page', { :page => @recipe_pages.current.next } if @recipe_pages.current.next %> 
+
+<br />
+
+<script type="text/javascript">
+  //Start JS tabs script for UL with id="maintab" Separate multiple ids each with a comma.
+  initializetabcontent("maintab");
+</script>

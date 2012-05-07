@@ -1,0 +1,50 @@
+<table>
+<tr>
+<td style="vertical-align: top;">
+<h2>Search by Recipe...</h2>
+<!--<h3>(Results will update as you change the form fields)</h3>-->
+<div id="recipe_search_form_container">
+  <%= render_partial 'recipe_search_form' %>
+</div>
+
+<div id="indicator" style="margin-top: 0px; height: 1em; display: none;">
+      <img alt="Indicator" src="/images/indicator.gif"> Performing action in the background...
+</div>
+
+</td>
+<td style="vertical-align: top; width: 10%;">
+&nbsp;
+</td>
+<td style="vertical-align: top;">
+
+<h2>Search Results:</h2>
+<h4>Drag Recipes onto Meals</h4>
+<div id="recipe_search_results" style="border: 1px dotted blue;">
+No search criteria provided.
+</div>
+
+<br />
+<hr />
+
+<h2>Meals:</h2>
+<table>
+<tr>
+<% for meal_number in 1..5 do %>
+<td id="meal_number_<%= meal_number %>" style="border: 1px solid red; vertical-align: top;">
+Meal #<%= meal_number %> 
+<ul id="meal_number_<%= meal_number %>_recipes" style="margin-top: 0px;">&nbsp;</ul>
+</td>
+<% end %>
+</tr>
+</table>
+<script type="text/javascript">
+<% for meal_number in 1..5 do %>
+    Droppables.add('meal_number_<%= meal_number %>', {accept:'recipe', onDrop:function(element){ 
+      alert('<%= "Recipe added to meal number #{meal_number}" %>'); 
+      new Ajax.Updater('meal_number_<%= meal_number %>_recipes', '/recipe_box/add_recipe_to_meal', {onLoading:function(request){Element.show('indicator')}, onComplete:function(request){ Element.hide('indicator')}, parameters:'single_meal_menu_id=' + <%= meal_number %> + '&recipe_dom_id=' + encodeURIComponent(element.id), evalScripts:true, insertion: Insertion.Bottom, asynchronous:true});
+      }, hoverclass:'assigned_recipe-active'});
+<% end %>
+</script>
+</td>
+</tr>
+</table>

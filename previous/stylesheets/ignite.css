@@ -1,0 +1,56 @@
+yellow:
+rgb(243,236,19)
+#f3ec13
+
+orange:
+rgb(233,152,45)
+#e9982d
+
+red:
+rgb(212,51,41)
+#d43329
+
+light-green:
+rgb(152,197,42)
+#98c52a
+
+bluish-grey:
+rgb(152,197,42)
+#98c52a
+
+grey:
+??
+
+#navlist_main a:visited, #navlist_ig a:visited, #navlist_dg a:visited, #navlist_ph a:visited, #navlist_pr a:visited, #navlist_dp a:visited 
+{color: #575233; text-decoration: none;}
+
+#navlist_main a:hover{ background-color: #B1C4C2;}
+
+#navlist_ig a:hover { background-color: #65778F; }
+
+#navlist_dg a:hover { background-color: #98C52C; }
+
+#navlist_ph a:hover { background-color: #D23428; }
+
+#navlist_pr a:hover { background-color: #E7992D; }
+
+#navlist_dp a:hover { background-color: #F3EF11; }
+
+rgb(219,144,114)
+#db9072
+
+rgb(98,176,216)
+#62b0d8
+
+rgb(161,217,106)
+#a1d96a
+
+rgb(215,98,120)
+#d76278
+
+rgb(226,139,215)
+#e28bd7
+
+rgb(213,206,20)
+#d5ce14
+

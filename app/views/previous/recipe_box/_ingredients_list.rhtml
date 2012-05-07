@@ -1,0 +1,12 @@
+<% for ingredient in @recipe.ingredients do %>
+ <li id="ingredient_<%= ingredient.id %>">
+  <% "Amount: #{ingredient.amount} UnitID: #{ingredient.unit_id} IngredientName: #{ingredient.name} RecipeID: #{ingredient.recipe_id} IngredientCategoryID: #{ingredient.ingredient_category_id}" %>     
+  <% "#{ingredient.amount} #{ingredient.unit.name}(s) #{ingredient.name} (Shopping category #{ingredient.ingredient_category.name})" %>     
+  <%= "#{ingredient.amount} #{ingredient.unit.abbrev}(s) #{ingredient.name} (#{ingredient.ingredient_category.name})" %>     
+  <% unless @skip_edit_delete_links %>
+  <br />
+  <a href="#" onclick="new Ajax.Updater('form_div', '/recipe_box/edit_ingredient', {onLoading:function(request){ Element.show('indicator'); Element.hide('form_div'); Element.hide('ingredient_<%= ingredient.id %>'); /* so they don't delete it while they're editing it */ }, onComplete:function(request){Element.hide('indicator'); Element.show('form_div');}, parameters:'ingredient[id]=<%= ingredient.id %>', evalScripts:true, asynchronous:true});">Edit</a>
+  <a href="#" onclick="new Ajax.Updater('ingredients-list', '/recipe_box/delete_ingredient', {onLoading:function(request){ Element.show('indicator'); Element.hide('ingredients-list'); /* so they can't try to edit it while they're deleting it; so they don't click edit on another one and mess up my javascript state while it is deleting */ }, onComplete:function(request){Element.hide('indicator'); Element.show('ingredients-list'); }, parameters:'ingredient[id]=<%= ingredient.id %>', evalScripts:true, asynchronous:true});">Delete</a>
+  <% end %>
+ </li> 
+<% end %> 

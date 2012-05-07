@@ -1,0 +1,26 @@
+<!--[form:ingredient]-->
+ <p>
+  <%= text_field 'ingredient', 'amount', {:size => 8}  %>
+  
+  <% ingredient_unit_options = @units.collect {|iu| [ iu.abbrev, iu.id ] } << ["New Unit...", 0] %>
+  <span id="ingredient_unit_id-container">
+  <%= select 'ingredient', 'unit_id', ingredient_unit_options, {}, {:onChange => "unit_changed();"} %>
+  </span>
+  
+  <label for="ingredient_name"> of </label>
+  <%= text_field_with_auto_complete 'ingredient', 'name', {:size => 16}, :skip_style => true  %>
+ </p> 
+ 
+ <label for="ingredient_category_id">Ingredient Category (Optional)</label>
+  <% ingredient_category_options = @ingredient_categories.collect {|ic| [ ic.name, ic.id ] } << ["New Ingredient Category...", 0] %>
+  <span id="ingredient_ingredient_category_id-container">
+  <%= select 'ingredient', 'ingredient_category_id', ingredient_category_options, {}, {:onChange => "ingredient_category_changed();"} %>
+  </span>
+  
+  <%= hidden_field 'ingredient', 'recipe_id' %>
+  
+  <!--
+  <br /><a href="#" onClick="alert($('ingredient_name').value)">What is in the autocomplete input tag?</a>
+  -->
+<!--[eoform:ingredient]-->
+

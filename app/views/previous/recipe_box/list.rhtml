@@ -1,0 +1,22 @@
+
+<h1>My Recipe Box</h1>
+If it actually looked like a recipe box, that would be way cool.
+<%= link_to 'New recipe', :action => 'new' %>
+
+<div id="show_recipes_container" style="">
+<% for @recipe in @recipes %>
+  <%= render_partial 'show_recipe' %>
+  <!--
+  <br />
+  <hr style="width: 300px;" />
+  <br />
+  -->
+<% end %>
+</div>
+
+<br />
+
+<%= link_to 'Previous page', { :page => @recipe_pages.current.previous } if @recipe_pages.current.previous %>
+<%= link_to 'Next page', { :page => @recipe_pages.current.next } if @recipe_pages.current.next %> 
+
+
