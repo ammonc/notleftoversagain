@@ -1,0 +1,58 @@
+  <style>
+	#draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+	#droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+	</style>
+	<script>
+	$(function() {
+    // Draggable elements gets a class of
+    //ui-draggable
+    // During drag the element also gets a class of
+    //ui-draggable-dragging
+    
+		$( "#draggable" ).draggable({
+      helper: "clone",
+      //If set to invalid, revert will only occur if the draggable has not been dropped on a matching droppable
+      revert: 'invalid',
+      containment: "document"
+    });
+    
+    
+		$( "#droppable" ).droppable({
+			accept: ".special-draggable-class-name",
+      // activeClass shows them where they can drag it to
+      // hoverClass comes on when they are dragging over the droppable
+      hoverClass: "ui-state-highlight",
+      drop: function( event, ui ) {
+        // addClass here makes the drop color permanent rather than temporary while the drag is still in progress
+        // so this doesn't need to be the *same* class as the activeClass above
+				
+        // I'd probably rather have a fade effect rather than a permanent new class...
+        // And actually put the data in the drop location (with possibly different formatting)
+        $( this )
+					.addClass( "ui-state-highlight" )
+					.find( "p" )
+						.html( "Dropped!" );
+			}
+		});
+	});
+	</script>
+
+
+
+<div class="demo">
+	
+<div id="draggable" class="ui-widget-content">
+	<p>Drag me to my target</p>
+</div>
+
+<div id="droppable" class="ui-widget-header">
+	<p>Drop here</p>
+</div>
+
+</div><!-- End demo -->
+
+
+
+<div class="demo-description" style="display: none; ">
+<p>Enable any DOM element to be droppable, a target for draggable elements.</p>
+</div><!-- End demo-description -->

@@ -10,6 +10,11 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+// twitter widgets - not sure exactly what this is for but it was in the example
+//= require widgets
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
+//= require jquery.ui.all 
+//= require backbone-rails 
 //= require_tree .

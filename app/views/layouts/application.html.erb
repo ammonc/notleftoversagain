@@ -1,14 +1,274 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Menu</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Menu Planner and Digital Recipe Box</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <style>
+      .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+      .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+	  </style>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
 
-<%= yield %>
+  <body>
 
-</body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <a class="brand" href="#">Menu Planner and Digital Recipe Box</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+            <ul class="nav pull-right">
+              <li>
+              <!--<a href="/sign_in">Sign In</a>-->
+                <form class="form-inline">
+                  <input type="text" class="input-small" placeholder="Email">
+                  <input type="password" class="input-small" placeholder="Password">
+                  <label class="checkbox" style="color: white">
+                    <input type="checkbox"> Remember me
+                  </label>
+                  <button type="submit" class="btn btn-primary">Sign in</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+          
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+    
+    <div class="container">
+
+
+<!-- Global Bootstrap settings
+================================================== -->
+<section id="global">
+
+      <div class="page-header">
+        <h1>Menu Planner and Digital Recipe Box <br/><small>for health, nutrition, and sanity</small></h1>
+      </div>
+  <div class="row">
+    <!-- If I put span4 and span8 with the solid black border, it gets too wide and they go in two rows rather than the column layout desired-->
+    <div class="span4">
+      <h2>Search and Favorites</h2>
+      <p>Mark recipes as favorites for quick access or simply search for them based on simple or advanced criteria.</p>
+      <div class="tabbable">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#search" data-toggle="tab">Search</a></li>
+          <li><a href="#favorites" data-toggle="tab">Favorites</a></li>
+          <li><a href="#advancedsearch" data-toggle="tab">Advanced Search</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="search">
+            <form class="well form-search">
+              <input type="text" class="input-medium search-query"   class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]' />
+              <button type="submit" class="btn">Search</button>
+            </form>
+          </div>
+          
+          <div class="tab-pane" id="favorites">
+
+            <div class="draggable ui-widget-content">
+              <p>Drag me to my target</p>
+            </div>
+
+       
+          </div>
+          <div class="tab-pane" id="advancedsearch">
+       
+          </div>
+        </div>
+      </div>
+    </div><!-- /.span -->
+    <div class="span8">
+      <h2>Menu Calendar or Recipe Card Detail View</h2>
+      <div class="tabbable">
+        <ul class="nav nav-tabs">
+          <li><a href="#recipecard" data-toggle="tab">Recipe Card Entry or Details</a></li>
+          <li class="active"><a href="#carousel" data-toggle="tab">Recipe Carousel</a></li>
+          <li><a href="#calendar" data-toggle="tab">Menu Calendar</a></li>
+          <li><a href="#shoppinglist" data-toggle="tab">Shopping List</a></li>
+          <li><a href="#pantry" data-toggle="tab">Pantry Viewer/Editor</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane" id="recipecard">
+            <form class="form-horizontal">
+              <fieldset>
+                <div class="control-group">
+                  <label class="control-label" for="input01">Text input</label>
+                  <div class="controls">
+                    <input type="text" class="input-xlarge" id="input01">
+                    <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="optionsCheckbox">Checkbox</label>
+                  <div class="controls">
+                    <label class="checkbox">
+                      <input type="checkbox" id="optionsCheckbox" value="option1">
+                      Option one is this and that&mdash;be sure to include why it's great
+                    </label>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="select01">Select list</label>
+                  <div class="controls">
+                    <select id="select01">
+                      <option>something</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="multiSelect">Multicon-select</label>
+                  <div class="controls">
+                    <select multiple="multiple" id="multiSelect">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="fileInput">File input</label>
+                  <div class="controls">
+                    <input class="input-file" id="fileInput" type="file">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="textarea">Textarea</label>
+                  <div class="controls">
+                    <textarea class="input-xlarge" id="textarea" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                  <button class="btn">Cancel</button>
+                </div>
+              </fieldset>
+            </form>  
+          </div>
+          <div class="tab-pane active" id="carousel">
+            <h2>Example carousel</h2>
+            <p>Watch the slideshow below.</p>
+            <div id="myCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <div class="item active">
+                  <img src="images/bootstrap-mdo-sfmoma-01.jpg" alt="">
+                  <div class="carousel-caption">
+                    <h4>First Thumbnail label</h4>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                  </div>
+                </div>
+                <div class="item">
+                  <img src="images/bootstrap-mdo-sfmoma-02.jpg" alt="">
+                  <div class="carousel-caption">
+                    <h4>Second Thumbnail label</h4>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                  </div>
+                </div>
+                <div class="item">
+                  <img src="images/bootstrap-mdo-sfmoma-03.jpg" alt="">
+                  <div class="carousel-caption">
+                    <h4>Third Thumbnail label</h4>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                  </div>
+                </div>
+              </div>
+              <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+              <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            </div>
+          </div>  
+          <div class="tab-pane" id="calendar">
+
+
+
+  
+<div class="droppable ui-widget-header">
+	<p>Drop here</p>
+</div>
+
+          </div>
+          <div class="tab-pane" id="shoppinglist">
+          </div>
+          <div class="tab-pane" id="pantry">
+          </div>
+        </div>
+      </div>
+    </div><!-- /.span -->
+  </div><!-- /.row -->
+</section>
+
+
+    </div><!-- /container -->
+
+
+
+    <script>
+    $('.carousel').carousel();
+    $('.typeahead').typeahead();
+    
+    </script>
+	<script>
+	$(function() {
+    // Draggable elements gets a class of
+    //ui-draggable
+    // During drag the element also gets a class of
+    //ui-draggable-dragging
+    
+		$( ".draggable" ).draggable({
+      helper: "clone",
+      //If set to invalid, revert will only occur if the draggable has not been dropped on a matching droppable
+      revert: 'invalid',
+      containment: "document"
+    });
+    
+    
+		$( ".droppable" ).droppable({
+			accept: ".special-draggable-class-name",
+      // activeClass shows them where they can drag it to
+      // hoverClass comes on when they are dragging over the droppable
+      hoverClass: "ui-state-highlight",
+      drop: function( event, ui ) {
+        // addClass here makes the drop color permanent rather than temporary while the drag is still in progress
+        // so this doesn't need to be the *same* class as the activeClass above
+				
+        // I'd probably rather have a fade effect rather than a permanent new class...
+        // And actually put the data in the drop location (with possibly different formatting)
+        $( this )
+					.addClass( "ui-state-highlight" )
+					.find( "p" )
+						.html( "Dropped!" );
+			}
+		});
+	});
+	</script>
+  
+  </body>
 </html>
